@@ -38,5 +38,3 @@ Reviewers decide status. The flow does not approve anything.
 4. Replace every `[REDACTED]` value before you turn the flow on.
 
 Do not paste a live tenant export into this repo.
-
-David Di Lillo · [linkedin.com/in/daviddilillo](https://linkedin.com/in/daviddilillo)
