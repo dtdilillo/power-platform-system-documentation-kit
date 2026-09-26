@@ -1,0 +1,16 @@
+{
+  "list": "Current Openings",
+  "description": "Applicant-facing published rows only. Written and deleted by the flow. Not edited in the app.",
+  "site": "[REDACTED]",
+  "listId": "[REDACTED]",
+  "columns": [
+    { "name": "Title", "type": "Single line", "required": true },
+    { "name": "ReferenceNumber", "type": "Single line", "required": true },
+    { "name": "DatePosted", "type": "Date", "required": true },
+    { "name": "Deadline", "type": "Date", "required": true },
+    { "name": "WorkSeason", "type": "Choice", "required": true, "choices": ["School Year", "Summer", "Summer/Fall", "Fall", "Spring"] },
+    { "name": "HoursRequested", "type": "Number", "required": true },
+    { "name": "PacketUrl", "type": "Hyperlink", "required": true },
+    { "name": "SourceRequestId", "type": "Number", "required": true, "notes": "Posting Requests ID. Not shown on the site page." }
+  ]
+}

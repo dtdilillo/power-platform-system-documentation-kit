@@ -1,6 +1,0 @@
-id,source_a,source_b,analysis,disposition,evidence_needed
-1,List note snapshot total A,Site note snapshot total B in same period label,timing or filter drift,keep both as snapshots,dated exports with identical filter
-2,List note Scheduled count A,Site note Scheduled count B,active queue changes quickly,keep both as snapshots,same as row 1
-3,List note says auto-publish trigger must be verified,Flow note states auto-publish as fact,certainty mismatch not a definition,Indicated until export,flow definition
-4,Packet column blank in extract,Page renders working links,display layer not captured,field exists; rendering Unresolved,column type and page binding
-5,App source is New mode only,Process text says requester revises in the app,path missing from app source,intent Verified; path Unresolved,edit screen or deep link

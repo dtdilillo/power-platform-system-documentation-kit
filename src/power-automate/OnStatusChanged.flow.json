@@ -1,0 +1,115 @@
+{
+  "name": "On Request Status Changed",
+  "description": "Runs when a Posting Requests row is created or Status changes. Does not approve the request.",
+  "trigger": {
+    "type": "When an item is created or modified",
+    "siteAddress": "[REDACTED]",
+    "listName": "Posting Requests",
+    "splitOn": "Status"
+  },
+  "triggerConditions": [
+    "@not(equals(triggerBody()?['Status'], triggerOutputs()?['body']?['{VersionNumber}']))"
+  ],
+  "actions": [
+    {
+      "name": "Switch_on_Status",
+      "type": "Switch",
+      "expression": "@triggerBody()?['Status']",
+      "cases": {
+        "Submitted": {
+          "actions": [
+            {
+              "name": "Email_requester_confirmation",
+              "type": "Office365Outlook.SendEmailV2",
+              "to": "@triggerBody()?['SubmittedBy']",
+              "subject": "Request received — @{triggerBody()?['Title']}",
+              "body": "Your posting request was submitted and is in review. You will get another message if a reviewer needs changes."
+            }
+          ]
+        },
+        "Needs revision": {
+          "actions": [
+            {
+              "name": "Email_requester_revision",
+              "type": "Office365Outlook.SendEmailV2",
+              "to": "@triggerBody()?['SubmittedBy']",
+              "subject": "Revision needed — @{triggerBody()?['Title']}",
+              "body": "A reviewer sent this request back.\n\n@{triggerBody()?['ReviewerNotes']}"
+            }
+          ]
+        },
+        "Approved": {
+          "actions": [
+            {
+              "name": "Get_next_reference_number",
+              "type": "Compose",
+              "note": "Implementation omitted. Do not hard-code a live sequence.",
+              "inputs": "[REDACTED sequence]"
+            },
+            {
+              "name": "Write_packet_file",
+              "type": "SharePoint.CreateFile",
+              "siteAddress": "[REDACTED]",
+              "folderPath": "/Packets/@{utcNow('yyyy')}",
+              "fileName": "REF-@{outputs('Get_next_reference_number')}.html",
+              "body": "[see PacketHtml.template.html]"
+            },
+            {
+              "name": "Create_Openings_row",
+              "type": "SharePoint.CreateItem",
+              "siteAddress": "[REDACTED]",
+              "listName": "Current Openings",
+              "item": {
+                "Title": "@triggerBody()?['Title']",
+                "ReferenceNumber": "@outputs('Get_next_reference_number')",
+                "DatePosted": "@utcNow()",
+                "Deadline": "[REDACTED deadline rule]",
+                "WorkSeason": "@triggerBody()?['WorkSeason']",
+                "HoursRequested": "@triggerBody()?['HoursRequested']",
+                "PacketUrl": "@outputs('Write_packet_file')?['{Link}']",
+                "SourceRequestId": "@triggerBody()?['ID']"
+              }
+            },
+            {
+              "name": "Stamp_request_row",
+              "type": "SharePoint.UpdateItem",
+              "siteAddress": "[REDACTED]",
+              "listName": "Posting Requests",
+              "id": "@triggerBody()?['ID']",
+              "item": {
+                "ReferenceNumber": "@outputs('Get_next_reference_number')",
+                "PacketUrl": "@outputs('Write_packet_file')?['{Link}']"
+              }
+            }
+          ]
+        },
+        "Unpublished": {
+          "actions": [
+            {
+              "name": "Delete_Openings_row",
+              "type": "SharePoint.DeleteItem",
+              "siteAddress": "[REDACTED]",
+              "listName": "Current Openings",
+              "filter": "SourceRequestId eq @{triggerBody()?['ID']}"
+            }
+          ]
+        },
+        "Closed": {
+          "actions": [
+            {
+              "name": "Delete_Openings_row_on_close",
+              "type": "SharePoint.DeleteItem",
+              "siteAddress": "[REDACTED]",
+              "listName": "Current Openings",
+              "filter": "SourceRequestId eq @{triggerBody()?['ID']}"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "sharePoint": "[REDACTED connection]",
+    "office365": "[REDACTED connection]"
+  }
+}

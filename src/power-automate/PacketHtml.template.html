@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>REF-{{ReferenceNumber}} — {{Title}}</title>
+  <style>
+    body { font-family: Calibri, Arial, sans-serif; margin: 32px; color: #111; }
+    h1 { font-size: 20px; margin-bottom: 4px; }
+    .meta { color: #444; margin-bottom: 24px; }
+    dt { font-weight: 700; margin-top: 12px; }
+    dd { margin-left: 0; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>{{Title}}</h1>
+  <p class="meta">
+    Reference {{ReferenceNumber}}
+    · Posted {{DatePosted}}
+    · Deadline {{Deadline}}
+    · {{WorkSeason}}
+    · {{HoursRequested}} hours
+  </p>
+
+  <dl>
+    <dt>Location</dt>
+    <dd>{{LocationText}}</dd>
+
+    <dt>Duties</dt>
+    <dd>{{DutiesText}}</dd>
+
+    <dt>How to apply</dt>
+    <dd>{{ApplicationProcess}}</dd>
+  </dl>
+
+  <!-- Eligibility, requester, reviewer notes stay off this file. -->
+</body>
+</html>

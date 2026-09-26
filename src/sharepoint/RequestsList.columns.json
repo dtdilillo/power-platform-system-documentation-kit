@@ -1,0 +1,26 @@
+{
+  "list": "Posting Requests",
+  "description": "System of record. Reviewers edit Status here. Do not expose this list on the public site.",
+  "site": "[REDACTED]",
+  "listId": "[REDACTED]",
+  "columns": [
+    { "name": "Title", "type": "Single line", "required": true, "public": false, "notes": "Position title as submitted" },
+    { "name": "OfficeName", "type": "Choice", "required": true, "public": false, "choices": ["[REDACTED office set]"] },
+    { "name": "WorkSeason", "type": "Choice", "required": true, "public": true, "choices": ["School Year", "Summer", "Summer/Fall", "Fall", "Spring"] },
+    { "name": "HoursRequested", "type": "Number", "required": true, "public": true },
+    { "name": "LocationText", "type": "Multiple lines", "required": true, "public": false },
+    { "name": "EligibilityText", "type": "Multiple lines", "required": true, "public": false, "notes": "Stays off the openings row" },
+    { "name": "DutiesText", "type": "Multiple lines", "required": true, "public": false },
+    { "name": "ApplicationProcess", "type": "Multiple lines", "required": true, "public": false },
+    { "name": "SupervisorName", "type": "Single line", "required": true, "public": false },
+    { "name": "ActivityContactEmail", "type": "Single line", "required": true, "public": false },
+    { "name": "Status", "type": "Choice", "required": true, "public": false, "choices": ["Submitted", "Needs revision", "Approved", "Unpublished", "Closed"], "default": "Submitted" },
+    { "name": "ReferenceNumber", "type": "Single line", "required": false, "public": true, "notes": "Stamped by the flow on Approved. Not collected in the app." },
+    { "name": "SubmittedBy", "type": "Person or email", "required": true, "public": false },
+    { "name": "SubmittedOn", "type": "Date and time", "required": true, "public": false },
+    { "name": "ReviewerEmail", "type": "Person or email", "required": false, "public": false },
+    { "name": "ReviewedOn", "type": "Date and time", "required": false, "public": false },
+    { "name": "ReviewerNotes", "type": "Multiple lines", "required": false, "public": false },
+    { "name": "PacketUrl", "type": "Hyperlink", "required": false, "public": true, "notes": "Set by the flow after the packet file is written" }
+  ]
+}
