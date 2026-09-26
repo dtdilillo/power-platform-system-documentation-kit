@@ -1,0 +1,24 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Secrets and live-tenant exports — never commit
+.env
+*.pfx
+*.pem
+local.settings.json
+
+# Live-system annex (keep private)
+/private/
+/ops-annex/
+*MASTER*LIVE*
+*flow-export*
+*list-schema-export*
+
+# Office lock files
+~$*.docx
+~$*.xlsx
