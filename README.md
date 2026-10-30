@@ -1,8 +1,8 @@
-# Extra-duty posting pipeline (redacted)
+# Extra-duty posting pipeline (genericized)
 
 Canvas app → SharePoint (system of record) → reviewer status change → Power Automate → packet file + public openings list.
 
-This is a stripped copy of the pattern I run for central extra-duty / per-session job postings. Environment URLs, list GUIDs, connection names, mailboxes, and live field internal names are replaced with placeholders.
+This is a stripped, genericized sample of a pattern used for central extra-duty / temporary assignment job postings. Environment URLs, list GUIDs, connection names, mailboxes, and live field internal names are placeholders.
 
 ```
 Requester
@@ -37,4 +37,4 @@ Reviewers decide status. The flow does not approve anything.
 3. Import the flow skeleton and reconnect the SharePoint and Outlook actions to your environment.
 4. Replace every `[REDACTED]` value before you turn the flow on.
 
-Do not paste a live tenant export into this repo.
+Do not paste a live tenant export into this repo. All sample content is generic.
